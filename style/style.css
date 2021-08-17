@@ -1,10 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Charm&display=swap');
 
 :root{
-    --body-background: linear-gradient(to right bottom, #00AAFF, #00FF6C);
-    --display-background: linear-gradient(to left bottom, #00342f, #007951);
-    --button-color: #bffae3;
-    --button-hover: #b9f5de;
+    --body-background: black;
+    --button-color: #1a1a1a;
+    --button-hover: #3d3d3d;
     --button-font: 'Poppins', sans-serif;
 }
 @font-face {
@@ -15,6 +14,7 @@
 
 *{
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 body{
     background: var(--body-background);
@@ -34,28 +34,16 @@ body{
     max-width: 35rem;
 }
 .input-area{
+    color: white;
     position: relative;
-    background: var(--display-background);
+    background: transparent;
     padding: 0.5rem 0.5rem 1rem;
-    border-top-right-radius: 10px;
-    z-index: 1;
-    animation: displayAni 4s ease-in-out infinite;
 }
-.input-area::before{
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-top-right-radius: 10px;
-    z-index: -1;
-    background: linear-gradient(to left bottom, #008659, #00342f);
-    opacity: 0;
-    animation: displayAni 5s ease-in-out infinite;
-}
-@keyframes displayAni {
-    50%{opacity: 1;}
+#trigonometric-mode{
+    font-size: 20px;
+    text-transform: capitalize;
+    cursor: pointer;
+    user-select: none;
 }
 
 #topDisplay{
@@ -80,13 +68,15 @@ body{
 }
 
 .button-area{
-    background: white;
+    background: transparent;
     padding: 2px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;
     border-bottom-left-radius: 10px;
 }
 .button-area span{
+    color: white;
     text-align: center;
     font-size: 1.5rem;
     font-family: var(--button-font);
@@ -95,12 +85,11 @@ body{
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    border: 1px solid white;
     border-radius: 5px;
     user-select: none;
     padding: 20px 0;
 }
-.input-button:hover{
+.button-area span:hover{
     background: var(--button-hover);
 }
 
@@ -122,17 +111,7 @@ sub{
 .signature{
     position: relative;
     top: 20%;
-    color: whitesmoke;
-    background: linear-gradient(to right, red, blue);
-    background-position-x: 0;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 10px gray;
+    color: rgb(131, 131, 131);
+    letter-spacing: 2px;
     animation: signatureAni 5s infinite;
-}
-@keyframes signatureAni {
-    50%{
-        background-position-x: 500px;
-    }
 }

@@ -10,10 +10,13 @@ const equalBut = document.querySelector('#equalBut');
 const acBut = document.querySelector('#ac');
 const delBut = document.querySelector('#del');
 const dotBut = document.getElementById('dot');
+const trigonometricMode = document.getElementById('trigonometric-mode');
 
 window.addEventListener('load', acFunc);
 
 let calculation = [], showOnScreen = [];
+let trigonoMode = 'rad';
+trigonometricMode.innerText = trigonoMode;
 
 
 function updateScreen() {
@@ -35,15 +38,13 @@ delBut.addEventListener('click', () => {
 })
 
 
+trigonometricMode.addEventListener('click', trigonometricModeFunction);
+function trigonometricModeFunction() {
+    if (trigonoMode == 'rad') { trigonoMode = 'deg' }
+    else { trigonoMode = 'rad' }
+    trigonometricMode.innerText = trigonoMode;
+}
 
-
-// dotBut.addEventListener('click', dotFunc);
-// function dotFunc() {
-//     if (screen.value == '') { screen.value = 0 }
-//     if (screen.value.indexOf('.') == -1) {
-//         screen.value += '.';
-//     }
-// }
 
 
 
@@ -162,7 +163,15 @@ function equalFunc() {
     autoCloseBracket();
     console.log(calculation);
 
-    let answer = eval(calculation.join(''));
+    let answer;
+    try {
+        answer = eval(calculation.join(''));
+    } catch (error) {
+        if (error instanceof SyntaxError) {
+            screen.value = 'Syntax Error!';
+            return;
+        }
+    }
 
     calculation = [answer.toString()];
     showOnScreen = [answer.toString()];
@@ -184,3 +193,4 @@ function removeAns(event) {
     })
     numButFunction(event);
 }
+
