@@ -11,11 +11,12 @@ const acBut = document.querySelector('#ac');
 const delBut = document.querySelector('#del');
 const dotBut = document.getElementById('dot');
 const trigonometricMode = document.getElementById('trigonometric-mode');
+const trigonoToggle = document.getElementById('trigono-toggle');
 
 window.addEventListener('load', acFunc);
 
 let calculation = [], showOnScreen = [];
-let trigonoMode = 'rad';
+let trigonoMode = 'deg';
 trigonometricMode.innerText = trigonoMode;
 
 
@@ -43,6 +44,23 @@ function trigonometricModeFunction() {
     if (trigonoMode == 'rad') { trigonoMode = 'deg' }
     else { trigonoMode = 'rad' }
     trigonometricMode.innerText = trigonoMode;
+}
+
+trigonoToggle.addEventListener('click', () => {
+    document.getElementById('trigonometric-container').classList.toggle('visible');
+})
+
+function trigo(operator, angle) {
+    if (trigonoMode == 'deg') {
+        angle = angle * Math.PI / 180;
+    }
+    let result;
+    if (operator.name == 'tan' && angle == (Math.PI / 2)) {
+        result = 'Invalid Input';
+        return result;
+    }
+    result = operator(angle);
+    return result;
 }
 
 

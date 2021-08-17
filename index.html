@@ -44,6 +44,20 @@
                 <div><span id="trigonometric-mode"></span></div>
                 <input type="text" id="topDisplay" readonly>
                 <input type="text" id="display" readonly value="0">
+                <div id="trigono-toggle">
+                    <span>Trigonometry &darr;</span>
+                    <div id="trigonometric-container">
+                        <span class="operationButton trigono-operator" data-button-symbol="trigo(Math.sin,">sin(</span>
+                        <span class="operationButton trigono-operator" data-button-symbol="trigo(Math.cos,">cos(</span>
+                        <span class="operationButton trigono-operator" data-button-symbol="trigo(Math.tan,">tan(</span>
+                        <span class="operationButton trigono-operator"
+                            data-button-symbol="trigo(Math.sinh,">sin<sup>-1</sup>(</span>
+                        <span class="operationButton trigono-operator"
+                            data-button-symbol="trigo(Math.cosh,">cos<sup>-1</sup>(</span>
+                        <span class="operationButton trigono-operator"
+                            data-button-symbol="trigo(Math.tanh,">tan<sup>-1</sup>(</span>
+                    </div>
+                </div>
             </div>
             <div class="button-area">
                 <span id="parenthesis-start" class="bracketButton">(</span>
@@ -53,19 +67,20 @@
                 <span id="powerButton">x<sup>□</sup></span>
                 <span id="squareBut">x<sup>2</sup></span>
                 <span id="sqrtBut">√</span>
-                <span class="operationButton input-button" data-button-symbol="/">÷</span>
+                <span class="operationButton" data-button-symbol="/">÷</span>
                 <span class="numberButton input-button">7</span>
                 <span class="numberButton input-button">8</span>
                 <span class="numberButton input-button">9</span>
-                <span class="operationButton input-button" data-button-symbol="*">×</span>
+                <span class="operationButton" data-button-symbol="*">×</span>
                 <span class="numberButton input-button">4</span>
                 <span class="numberButton input-button">5</span>
                 <span class="numberButton input-button">6</span>
-                <span class="operationButton input-button" data-button-symbol="-">−</span>
+                <span class="operationButton" data-button-symbol="-">−</span>
                 <span class="numberButton input-button">1</span>
                 <span class="numberButton input-button">2</span>
                 <span class="numberButton input-button">3</span>
-                <span class="operationButton input-button" data-button-symbol="+">+</span>
+                <span class="operationButton" data-button-symbol="+">+</span>
+                <span class="operationButton" data-button-symbol="Math.PI">π</span>
                 <span class="numberButton input-button">0</span>
                 <span id="dot" class="numberButton">.</span>
                 <span id="equalBut">=</span>
