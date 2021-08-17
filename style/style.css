@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Charm&display=swap');
+
+:root{
+    --body-background: linear-gradient(to right bottom, #00AAFF, #00FF6C);
+    --display-background: linear-gradient(to left bottom, #00342f, #007951);
+    --button-color: #bffae3;
+    --button-hover: #b9f5de;
+    --button-font: 'Poppins', sans-serif;
+}
+@font-face {
+    font-family: displayFont;
+    src: url(fonts/tahoma.ttf);
+}
+
+
+*{
+    box-sizing: border-box;
+}
+body{
+    background: var(--body-background);
+    margin: 0;
+}
+.container{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+.calculator{
+    min-width: 15rem;
+    max-width: 35rem;
+}
+.input-area{
+    position: relative;
+    background: var(--display-background);
+    padding: 0.5rem 0.5rem 1rem;
+    border-top-right-radius: 10px;
+    z-index: 1;
+    animation: displayAni 4s ease-in-out infinite;
+}
+.input-area::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-top-right-radius: 10px;
+    z-index: -1;
+    background: linear-gradient(to left bottom, #008659, #00342f);
+    opacity: 0;
+    animation: displayAni 5s ease-in-out infinite;
+}
+@keyframes displayAni {
+    50%{opacity: 1;}
+}
+
+#topDisplay{
+    background: transparent;
+    color: #bffae3;
+    width: 100%;
+    text-align: right;
+    font-size: 1.7rem;
+    font-family: displayFont, 'Tahoma', sans-serif;
+    border: 0;
+    outline: 0;
+}
+#display{
+    background: transparent;
+    color: whitesmoke;
+    width: 100%;
+    text-align: right;
+    font-size: 3rem;
+    font-family: displayFont, 'Tahoma', sans-serif;
+    border: 0;
+    outline: 0;
+}
+
+.button-area{
+    background: white;
+    padding: 2px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom-left-radius: 10px;
+}
+.button-area span{
+    text-align: center;
+    font-size: 1.5rem;
+    font-family: var(--button-font);
+    background: var(--button-color);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid white;
+    border-radius: 5px;
+    user-select: none;
+    padding: 20px 0;
+}
+.input-button:hover{
+    background: var(--button-hover);
+}
+
+#powerButton,#squareBut, #sqrtBut, #oneDivided{
+    font-family: 'Charm', serif;
+    font-weight: bold;
+}
+sup{
+    font-size: 17px;
+    position: relative;
+    top: -5px;
+}
+sub{
+    position: relative;
+    top: 5px;
+}
+
+
+.signature{
+    position: relative;
+    top: 20%;
+    color: whitesmoke;
+    background: linear-gradient(to right, red, blue);
+    background-position-x: 0;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px gray;
+    animation: signatureAni 5s infinite;
+}
+@keyframes signatureAni {
+    50%{
+        background-position-x: 500px;
+    }
+}
