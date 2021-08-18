@@ -3,6 +3,7 @@ const topScreen = document.getElementById('topDisplay');
 const numBut = document.querySelectorAll('.numberButton');
 const operationBut = document.querySelectorAll('.operationButton');
 const bracketBut = document.querySelectorAll('.bracketButton');
+const powerBut = document.getElementById('powerButton');
 const squareBut = document.querySelector('#squareBut');
 const sqrtBut = document.querySelector('#sqrtBut');
 const percentBut = document.querySelector('#percentBut');
@@ -12,6 +13,7 @@ const delBut = document.querySelector('#del');
 const dotBut = document.getElementById('dot');
 const trigonometricMode = document.getElementById('trigonometric-mode');
 const trigonoToggle = document.getElementById('trigono-toggle');
+const exponentialNum = document.getElementById('exponential');
 
 window.addEventListener('load', acFunc);
 
@@ -21,7 +23,7 @@ trigonometricMode.innerText = trigonoMode;
 
 
 function updateScreen() {
-    topScreen.value = showOnScreen.join('');
+    topScreen.innerText = showOnScreen.join('');
 }
 
 acBut.addEventListener('click', acFunc);
@@ -31,6 +33,7 @@ function acFunc() {
     showOnScreen = [];
     screen.value = 0;
     updateScreen();
+    clearExponential();
 }
 delBut.addEventListener('click', () => {
     calculation.pop();
@@ -129,33 +132,65 @@ function autoCloseBracket() {
     }
 }
 
-squareBut.addEventListener('click', squareFunc);
+powerBut.addEventListener('click', event => {
+    calculation.push('power(');
 
-function squareFunc() {
-    let squareOf = [];
-    if (calculation[calculation.length - 1] == ')') {
-        let bracketCount = 0;
-        for (let i = calculation.length - 1; i >= 0; i--) {
-            if (calculation[i] == '(') { bracketCount++ }
-            if (calculation[i] == ')') { bracketCount-- }
-            squareOf.unshift(calculation[i]);
-            calculation.pop();
-            if (bracketCount == 0) { break }
-        }
-    } else {
-        for (let i = calculation.length - 1; i >= 0; i--) {
-            if (isNaN(calculation[i])) { break }
-            squareOf.unshift(calculation[i]);
-            calculation.pop();
-        }
-    }
-    let squared = Math.pow(eval(squareOf.join('')), 2);
-    calculation.push(squared);
-    console.log(calculation);
-
-    showOnScreen.push('²');
+    showOnScreen.push(event.target.dataset.buttonSymbol);
     updateScreen();
+});
+function powerFunction() {
+    if (calculation.includes('power(')) {
+        let powerStart, powerEnd; // keep the index of the number from where to start power function
+
+        let powerOf = []; // keep the number which have to powered
+        let power = ['(']; // keep the number of power
+
+        // if there are any end bracket before power
+        if (calculation[calculation.indexOf('power(') - 1] == ')') {
+            let bracketCount = 0;
+            for (let i = calculation.indexOf('power(') - 1; i >= 0; i--) {
+                powerStart = i; // starting index
+                if (calculation[i] == '(') { bracketCount++ }
+                if (calculation[i] == ')') { bracketCount-- }
+                powerOf.unshift(calculation[i]);
+                if (bracketCount == 0) { break } // if start brackets are equal to end brackets break this loop
+            }
+        } // if there are no end brackets before power
+        else {
+            for (let i = calculation.indexOf('power(') - 1; i >= 0; i--) {
+                if (isNaN(calculation[i])) { break }
+                powerStart = i; // starting index
+                powerOf.unshift(calculation[i]);
+            }
+        }
+        // get the index of last number where power function ends
+        {
+            let bracketCount = 1;
+            for (let i = calculation.indexOf('power(') + 1; i < calculation.length; i++) {
+                if (calculation[i] == '(') { bracketCount++ }
+                if (calculation[i] == ')') { bracketCount-- }
+                power.push(calculation[i]);
+                powerEnd = i; // ending index
+                if (bracketCount == 0) { break } // if start brackets are equal to end brackets break this loop
+            }
+        }
+
+        // calculate power
+        let powered = Math.pow(eval(powerOf.join('')), eval(power.join('')));
+
+        // replace power and power numbers with powered
+        calculation.splice(powerStart, powerEnd - powerStart + 1, powered);
+
+        powerFunction(); // check if there is any other power in calculation array
+    }
 }
+
+squareBut.addEventListener('click', event => {
+    calculation.push('power(', '2', ')');
+
+    showOnScreen.push('^(', '2', ')');
+    updateScreen();
+});
 
 
 sqrtBut.addEventListener('click', sqrtFunc);
@@ -171,6 +206,10 @@ function sqrtFunc() {
         showOnScreen.push('√(');
         updateScreen();
     }
+
+    numBut.forEach(element => {
+        element.removeEventListener('click', removeAns);
+    })
 }
 
 
@@ -178,8 +217,9 @@ function sqrtFunc() {
 equalBut.addEventListener('click', equalFunc);
 
 function equalFunc() {
+    clearExponential();
     autoCloseBracket();
-    console.log(calculation);
+    powerFunction();
 
     let answer;
     try {
@@ -193,6 +233,12 @@ function equalFunc() {
 
     calculation = [answer.toString()];
     showOnScreen = [answer.toString()];
+    if (answer.toString().indexOf('e') != -1) {
+        answer = answer.toString().split('e');
+        exponentialNum.innerText = answer[1];
+        exponentialNum.parentElement.classList.add('active');
+        answer = answer[0];
+    }
     screen.value = answer;
 
 
@@ -210,5 +256,10 @@ function removeAns(event) {
         element.removeEventListener('click', removeAns);
     })
     numButFunction(event);
+}
+
+function clearExponential() {
+    exponentialNum.innerText = '';
+    exponentialNum.parentElement.classList.remove('active');
 }
 
