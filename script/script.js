@@ -6,6 +6,7 @@ const bracketBut = document.querySelectorAll('.bracketButton');
 const powerBut = document.getElementById('powerButton');
 const squareBut = document.querySelector('#squareBut');
 const sqrtBut = document.querySelector('#sqrtBut');
+const cubeRootBut = document.getElementById('cubeRootButton');
 const percentBut = document.querySelector('#percentBut');
 const equalBut = document.querySelector('#equalBut');
 const acBut = document.querySelector('#ac');
@@ -193,17 +194,23 @@ squareBut.addEventListener('click', event => {
 });
 
 
-sqrtBut.addEventListener('click', sqrtFunc);
+sqrtBut.addEventListener('click', event => {
+    rootFunc(event, 'Math.sqrt(');
+});
 
-function sqrtFunc() {
+cubeRootBut.addEventListener('click', event => {
+    rootFunc(event, 'Math.cbrt(');
+})
+
+function rootFunc(event, root) {
     if (isNaN(Number(showOnScreen[showOnScreen.length - 1])) == false) {
-        calculation.push('*');
-        calculation.push('Math.sqrt(');
-        showOnScreen.push('√(');
+        root = '*' + root;
+        calculation.push(root);
+        showOnScreen.push(event.target.dataset.buttonSymbol);
         updateScreen();
     } else {
-        calculation.push('Math.sqrt(');
-        showOnScreen.push('√(');
+        calculation.push(root);
+        showOnScreen.push(event.target.dataset.buttonSymbol);
         updateScreen();
     }
 
