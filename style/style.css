@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans&family=Charm&family=Tangerine&display=swap');
 
 :root{
-    --body-background: black;
+    --body-background: rgb(22, 22, 22);
     --button-color: #2a2a2a;
     --button-hover: #3d3d3d;
 }
@@ -46,12 +46,13 @@ body{
     cursor: pointer;
     user-select: none;
 }
-#trigono-toggle{
+#trigonometry{
     position: relative;
     font-size: 1.2rem;
     cursor: pointer;
     display: inline-block;
     margin-top: 10px;
+    user-select: none;
 }
 #trigonometric-container{
     background: var(--button-color);
@@ -116,6 +117,12 @@ body{
     font-size: 1.1rem;
 }
 #exponential-container.active{ color: whitesmoke}
+
+
+#ansButton{
+    margin: 0 20px;
+    font-size: 1.4rem;
+}
 
 .button-area{
     background: transparent;

@@ -5,6 +5,7 @@ const operationBut = document.querySelectorAll('.operationButton');
 const bracketBut = document.querySelectorAll('.bracketButton');
 const powerBut = document.getElementById('powerButton');
 const squareBut = document.querySelector('#squareBut');
+const powerMinus1Button = document.getElementById('power-1')
 const sqrtBut = document.querySelector('#sqrtBut');
 const cubeRootBut = document.getElementById('cubeRootButton');
 const percentBut = document.querySelector('#percentBut');
@@ -15,6 +16,7 @@ const dotBut = document.getElementById('dot');
 const trigonometricMode = document.getElementById('trigonometric-mode');
 const trigonoToggle = document.getElementById('trigono-toggle');
 const exponentialNum = document.getElementById('exponential');
+const answerButton = document.getElementById('ansButton');
 
 window.addEventListener('load', acFunc);
 
@@ -193,6 +195,11 @@ squareBut.addEventListener('click', event => {
     updateScreen();
 });
 
+powerMinus1Button.addEventListener('click', event => {
+    calculation.push('power(', '-1', ')');
+    showOnScreen.push('^(', '-1', ')');
+    updateScreen();
+})
 
 sqrtBut.addEventListener('click', event => {
     rootFunc(event, 'Math.sqrt(');
@@ -240,6 +247,9 @@ function equalFunc() {
 
     calculation = [answer.toString()];
     showOnScreen = [answer.toString()];
+
+    localStorage.setItem('ans', answer);
+
     if (answer.toString().indexOf('e') != -1) {
         answer = answer.toString().split('e');
         exponentialNum.innerText = answer[1];
@@ -247,6 +257,7 @@ function equalFunc() {
         answer = answer[0];
     }
     screen.value = answer;
+
 
 
     // clear answer when number button clicked
@@ -270,3 +281,10 @@ function clearExponential() {
     exponentialNum.parentElement.classList.remove('active');
 }
 
+
+answerButton.addEventListener('click', () => {
+    let answer = localStorage.getItem('ans');
+    calculation.push(answer);
+    showOnScreen.push('ANS');
+    updateScreen();
+})
