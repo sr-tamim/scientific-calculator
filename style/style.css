@@ -12,72 +12,58 @@
     -webkit-tap-highlight-color: transparent;
     font-family: 'PT Sans', serif;
 }
+html{
+    font-size: 16px;
+}
 body{
     background: var(--body-background);
     margin: 0;
     position: absolute;
-    width: 100vw;
+    width: 100%;
     height: 100%;
+    min-width: 300px;
+    max-width: 100vw;
+    max-height: 100vh;
 }
 .container{
     width: 100%;
-    max-width: 100%;
-    min-height: 100%;
+    height: 100%;
+}
+
+.signature{
+    font-family: 'Tangerine', sans-serif;
+    font-size: 3vh;
+    text-align: center;
+    color: rgb(140, 140, 140);
+    letter-spacing: 2px;
+    margin: 0;
+    padding-top: 0.5rem;
+}
+
+
+.calculator{
+    width: 100%;
+    height:95vh;
+    max-width: 35rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    padding: 1rem;
-}
-.calculator{
-    min-width: 15rem;
-    max-width: 35rem;
+    padding: 0 2.5vw;
+    margin: 0 auto;
 }
 .input-area{
     color: white;
     position: relative;
     background: transparent;
     padding: 0.5rem 0.5rem 1rem;
-    max-width: 100%;
+    width: 100%;
 }
-#trigonometric-mode{
-    font-size: 1.2rem;
-    text-transform: capitalize;
-    cursor: pointer;
-    user-select: none;
-}
-#trigonometry{
-    position: relative;
-    font-size: 1.2rem;
-    cursor: pointer;
-    display: inline-block;
-    margin-top: 10px;
-    user-select: none;
-}
-#trigonometric-container{
-    background: var(--button-color);
-    position: absolute;
-    top: 150%;
-    width: max-content;
-    display: none;
-    grid-template-columns: repeat(3,1fr);
-    box-shadow: 0 0 10px rgb(73, 73, 73);
-    z-index: 10;
-}
-#trigonometric-container.visible{ display: grid;}
-.trigono-operator{
-    text-align: center;
-    font-size: 1.2rem;
-    padding: 15px;
-    cursor: pointer;
-}
-.trigono-operator:hover{ background: var(--button-hover);}
-
 #topDisplay-container{
     position: relative;
     width: 100%;
-    height: 2.5rem;
-    margin:10px 0 0;
+    height: 3.6vh;
+    margin: 1vh 0;
     overflow-x: auto;
     direction: rtl;
 }
@@ -93,7 +79,7 @@ body{
     right: 0;
     background: transparent;
     color: #dddddd;
-    font-size: 1.9rem;
+    font-size: 3.5vh;
     height: 100%;
     margin: 0;
     direction: initial;
@@ -104,7 +90,7 @@ body{
     color: rgb(255, 255, 255);
     width: 100%;
     text-align: right;
-    font-size: 2.7rem;
+    font-size: 6vh;
     border: 0;
     outline: 0;
 }
@@ -118,41 +104,86 @@ body{
 }
 #exponential-container.active{ color: whitesmoke}
 
-
-#ansButton{
-    margin: 0 20px;
-    font-size: 1.4rem;
+.button-container{
+    width: 100%;
 }
 
+.trigonometry{
+    color: white;
+    font-size: 2.5vh;
+    cursor: pointer;
+    user-select: none;
+    margin: 0.6rem 0.2rem;
+}
+#trigonometric-mode{
+    text-transform: capitalize;
+    margin-right: 0.8rem;
+}
+#trigono-toggle{
+    position: relative;
+    display: inline-block;
+    margin-top: 10px;
+}
+#trigonometric-container{
+    background: var(--button-color);
+    position: absolute;
+    top: 150%;
+    width: max-content;
+    display: none;
+    grid-template-columns: repeat(3,1fr);
+    box-shadow: 0 0 10px rgb(73, 73, 73);
+    z-index: 10;
+}
+#trigonometric-container.visible{ display: grid;}
+.trigono-operator{
+    text-align: center;
+    padding: 15px;
+}
+.trigono-operator:hover{ background: var(--button-hover);}
+
+
 .button-area{
+    width: 100%;
     background: transparent;
-    padding: 2px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 5px;
     border-bottom-left-radius: 10px;
 }
-.button-area span{
+.button-area> span{
     color: white;
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 2.7vh;
     background: var(--button-color);
-    display: inline-flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     border-radius: 5px;
     user-select: none;
-    padding: 20px 0;
+    padding: 2vh 0 1.8vh;
 }
 .button-area span:hover{
     background: var(--button-hover);
 }
 
-#powerButton, #squareBut{ font-family: 'Charm', serif;}
+.toggle-visibility{ display: none; }
+.toggle-visibility.visible{ display: inline-flex; }
+
+.button-pair{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 5px;
+    background: var(--body-background) !important;
+    padding: 0 !important;
+}
+.paired-button{
+    background: var(--button-color);
+    padding: 2vh 0 1.8vh;
+}
+#powerButton, #squareBut, #power-1{ font-family: 'Charm', serif;}
 
 sup{
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     position: relative;
     top: -5px;
 }
@@ -162,9 +193,13 @@ sub{
 }
 
 
-.signature{
-    font-family: 'Tangerine', sans-serif;
-    font-size: 1.2rem;
-    color: rgb(131, 131, 131);
-    letter-spacing: 2px;
+
+@media screen and (min-width: 768px) {
+    html{ font-size: 18px;}
+}
+@media screen and (min-width: 1200px) {
+    html{ font-size: 22px;}
+}
+@media screen and (min-width: 1500px) {
+    html{ font-size: 25px;}
 }

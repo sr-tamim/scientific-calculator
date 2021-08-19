@@ -18,6 +18,15 @@ const trigonoToggle = document.getElementById('trigono-toggle');
 const exponentialNum = document.getElementById('exponential');
 const answerButton = document.getElementById('ansButton');
 
+
+document.getElementById('visibility-toggler').addEventListener('click', function () {
+    document.querySelectorAll('.toggle-visibility').forEach(element => {
+        element.classList.toggle('visible');
+    })
+})
+
+
+
 window.addEventListener('load', acFunc);
 
 let calculation = [], showOnScreen = [];
@@ -61,7 +70,11 @@ function trigo(operator, angle) {
         angle = angle * Math.PI / 180;
     }
     let result;
-    if (operator.name == 'tan' && angle == (Math.PI / 2)) {
+    if (operator.name == 'sin' && angle == (Math.PI)) {
+        result = 0;
+        return result;
+    }
+    else if (operator.name == 'tan' && angle == (Math.PI / 2)) {
         result = 'Invalid Input';
         return result;
     }
