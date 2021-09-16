@@ -84,7 +84,6 @@ function trigo(operator, angle) {
 
 
 
-
 numBut.forEach(element => {
     element.addEventListener('click', numButFunction);
 })
@@ -94,6 +93,8 @@ function numButFunction(event) {
     showOnScreen.push(event.target.innerText);
     updateScreen();
 }
+
+
 operationBut.forEach(element => {
     element.addEventListener('click', operationButFunction);
 })
@@ -300,4 +301,25 @@ answerButton.addEventListener('click', () => {
     calculation.push(answer);
     showOnScreen.push('ANS');
     updateScreen();
+})
+
+// add keyboard functionality for computers
+document.addEventListener('keydown', e => {
+    switch (e.key) {
+        case 'Enter':
+            e.preventDefault();
+            equalBut.click();
+            break;
+        case 'Backspace':
+            e.preventDefault();
+            topScreen.innerText ? delBut.click() : acBut.click();
+            break;
+        default:
+            numBut.forEach(element => {
+                if (element.innerText === e.key) { e.preventDefault(); element.click(); }
+            })
+            operationBut.forEach(element => {
+                if (element.dataset.buttonSymbol === e.key) { e.preventDefault(); element.click(); }
+            })
+    }
 })
