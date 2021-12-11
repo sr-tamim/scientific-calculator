@@ -161,7 +161,7 @@ body{
     border-radius: 5px;
     user-select: none;
     padding: 2vh 0 1.8vh;
-    transition: background 200ms, transform 100ms;
+    transition: background 80ms, transform 20ms;
 }
 /* .button-area span:hover{
     background: var(--button-hover);
