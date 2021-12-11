@@ -129,12 +129,19 @@ body{
     position: absolute;
     top: 150%;
     width: max-content;
-    display: none;
+    display: grid;
     grid-template-columns: repeat(3,1fr);
     box-shadow: 0 0 10px rgb(73, 73, 73);
     z-index: 10;
+    transform: rotateX(90deg);
+    transform-origin: top;
+    transition: transform 300ms;
 }
-#trigonometric-container.visible{ display: grid;}
+#trigonometric-container.visible{
+    display: grid;
+    transform: rotateX(0);
+}
+
 .trigono-operator{
     text-align: center;
     padding: 15px;
@@ -163,9 +170,6 @@ body{
     padding: 2vh 0 1.8vh;
     transition: background 80ms, transform 20ms;
 }
-/* .button-area span:hover{
-    background: var(--button-hover);
-} */
 
 .toggle-visibility{ display: none; }
 .toggle-visibility.visible{ display: inline-flex; }
@@ -187,10 +191,12 @@ sup{
     font-size: 0.7rem;
     position: relative;
     top: -5px;
+    z-index: 1;
 }
 sub{
     position: relative;
     top: 5px;
+    z-index: 1;
 }
 
 
