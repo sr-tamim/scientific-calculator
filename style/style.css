@@ -150,7 +150,7 @@ body{
     grid-gap: 5px;
     border-bottom-left-radius: 10px;
 }
-.button-area> span{
+.button{
     color: white;
     text-align: center;
     font-size: 2.7vh;
@@ -161,10 +161,11 @@ body{
     border-radius: 5px;
     user-select: none;
     padding: 2vh 0 1.8vh;
+    transition: background 200ms, transform 100ms;
 }
-.button-area span:hover{
+/* .button-area span:hover{
     background: var(--button-hover);
-}
+} */
 
 .toggle-visibility{ display: none; }
 .toggle-visibility.visible{ display: inline-flex; }
