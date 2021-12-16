@@ -30,14 +30,26 @@ body{
     height: 100%;
 }
 
+.topBar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 35rem;
+    margin: auto;
+    padding: 5px 2.5vw;
+}
+.topBar svg{
+    width: 2.5vh;
+    height: 2.5vh;
+    fill: rgb(140, 140, 140);
+}
 .signature{
     font-family: 'Tangerine', sans-serif;
-    font-size: 3vh;
+    font-size: 2.5vh;
     text-align: center;
     color: rgb(140, 140, 140);
     letter-spacing: 2px;
     margin: 0;
-    padding-top: 0.5rem;
 }
 
 
