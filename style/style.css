@@ -42,6 +42,10 @@ body{
     width: 2.5vh;
     height: 2.5vh;
     fill: rgb(140, 140, 140);
+    transition: fill 500ms;
+}
+.topBar svg:hover{
+    fill: rgb(180, 180, 180);
 }
 .signature{
     font-family: 'Tangerine', sans-serif;
