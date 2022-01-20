@@ -30,9 +30,14 @@ document.getElementById('visibility-toggler').addEventListener('click', function
 window.addEventListener('load', acFunc);
 
 let calculation = [], showOnScreen = [];
+const operators = ['+', '-', '*', '/'];
 let trigonoMode = 'deg';
 trigonometricMode.innerText = trigonoMode;
 
+
+function calculate(equationArray) {
+    return eval(equationArray.join(''))
+}
 
 function updateScreen() {
     topScreen.innerText = showOnScreen.join('');
@@ -167,15 +172,15 @@ function powerFunction() {
             let bracketCount = 0;
             for (let i = calculation.indexOf('power(') - 1; i >= 0; i--) {
                 powerStart = i; // starting index
-                if (calculation[i] == '(') { bracketCount++ }
-                if (calculation[i] == ')') { bracketCount-- }
+                if (calculation[i] === '(') { bracketCount++ }
+                if (calculation[i] === ')') { bracketCount-- }
                 powerOf.unshift(calculation[i]);
-                if (bracketCount == 0) { break } // if start brackets are equal to end brackets break this loop
+                if (bracketCount === 0) { break } // if start brackets are equal to end brackets then break this loop
             }
         } // if there are no end brackets before power
         else {
             for (let i = calculation.indexOf('power(') - 1; i >= 0; i--) {
-                if (isNaN(calculation[i])) { break }
+                if (operators.includes(calculation[i])) { break }
                 powerStart = i; // starting index
                 powerOf.unshift(calculation[i]);
             }
@@ -191,9 +196,8 @@ function powerFunction() {
                 if (bracketCount == 0) { break } // if start brackets are equal to end brackets break this loop
             }
         }
-
         // calculate power
-        let powered = Math.pow(eval(powerOf.join('')), eval(power.join('')));
+        let powered = Math.pow(calculate(powerOf), calculate(power));
 
         // replace power and power numbers with powered
         calculation.splice(powerStart, powerEnd - powerStart + 1, powered);
@@ -215,6 +219,8 @@ powerMinus1Button.addEventListener('click', event => {
     updateScreen();
 })
 
+
+// mathematical root functions
 sqrtBut.addEventListener('click', event => {
     rootFunc(event, 'Math.sqrt(');
 });
@@ -224,16 +230,11 @@ cubeRootBut.addEventListener('click', event => {
 })
 
 function rootFunc(event, root) {
-    if (isNaN(Number(showOnScreen[showOnScreen.length - 1])) == false) {
-        root = '*' + root;
-        calculation.push(root);
-        showOnScreen.push(event.target.dataset.buttonSymbol);
-        updateScreen();
-    } else {
-        calculation.push(root);
-        showOnScreen.push(event.target.dataset.buttonSymbol);
-        updateScreen();
-    }
+    !operators.includes(calculation.slice(-1)) ?
+        calculation.push(`*${root}`)
+        : calculation.push(root);
+    showOnScreen.push(event.target.dataset.buttonSymbol);
+    updateScreen();
 
     numBut.forEach(element => {
         element.removeEventListener('click', removeAns);
@@ -251,7 +252,8 @@ function equalFunc() {
 
     let answer;
     try {
-        answer = eval(calculation.join(''));
+        console.log(calculation)
+        answer = calculate(calculation);
     } catch (error) {
         if (error instanceof SyntaxError) {
             screen.value = 'Syntax Error!';
