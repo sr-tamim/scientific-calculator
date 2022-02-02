@@ -1,4 +1,5 @@
-# [Scientific Calculator using plain JavaScript](https://calculator-srt.netlify.app)
+# [Scientific Calculator using plain JavaScript](https://tamim9.github.io/scientific-calculator/)
+### Experience the full power of this web calculator even if you're offline
 
 ##### This is a fully functional scientific calculator | Languages used => HTML, CSS, JavaScript.
 
@@ -8,7 +9,8 @@
 - Logarithm calculation (log, ln)
 - Get values of powered numbers
 - Auto save last answer
+- Offline support ( *just visit the calculator once online & then you can visit this offline* )
 
-### [Explore Calculator](https://calculator-srt.netlify.app)
+### [Explore Calculator](https://tamim9.github.io/scientific-calculator/)
 
-###### [*made by SR TAMIM*](https://linkedin.com/in/srtamim)
+###### [*made by SR TAMIM*](https://sr-tamim.vercel.app)
