@@ -2,7 +2,7 @@
     --body-background: rgb(22, 22, 22);
     --button-color: #2a2a2a;
     --button-hover: #3d3d3d;
-    --max-width: 40rem;
+    --max-width: 35rem;
     font-size: 16px;
 }
 
@@ -241,13 +241,12 @@ sub{
 }
 
 
-
 @media screen and (min-width: 768px) {
-    html{ font-size: 18px;}
+    :root{ font-size: 18px;}
 }
 @media screen and (min-width: 1200px) {
-    html{ font-size: 22px;}
+    :root{ font-size: 22px;}
 }
 @media screen and (min-width: 1500px) {
-    html{ font-size: 25px;}
+    :root{ font-size: 25px;}
 }
