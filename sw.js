@@ -1,5 +1,5 @@
 // service worker file
-const staticCacheName = 'calculator-v1.5.0';
+const staticCacheName = 'calculator-v1.5.5';
 const assets = [
     '/scientific-calculator/',
     '/scientific-calculator/index.html',
@@ -7,7 +7,16 @@ const assets = [
     '/scientific-calculator/script/script.js',
     '/scientific-calculator/script/app.js',
     '/scientific-calculator/img/favicon.ico',
-    'https://fonts.googleapis.com/css2?family=PT+Sans&family=Charm&family=Tangerine&display=swap',
+    // fonts links
+    'https://fonts.gstatic.com/s/charm/v8/7cHmv4oii5K0MdY8K-4E4Q.woff2',
+    'https://fonts.gstatic.com/s/charm/v8/7cHmv4oii5K0MdYnK-4E4Q.woff2',
+    'https://fonts.gstatic.com/s/charm/v8/7cHmv4oii5K0MdYmK-4E4Q.woff2',
+    'https://fonts.gstatic.com/s/charm/v8/7cHmv4oii5K0MdYoK-4.woff2',
+    'https://fonts.gstatic.com/s/ptsans/v16/jizaRExUiTo99u79D0-ExdGM.woff2',
+    'https://fonts.gstatic.com/s/ptsans/v16/jizaRExUiTo99u79D0aExdGM.woff2',
+    'https://fonts.gstatic.com/s/ptsans/v16/jizaRExUiTo99u79D0yExdGM.woff2v',
+    'https://fonts.gstatic.com/s/ptsans/v16/jizaRExUiTo99u79D0KExQ.woff2',
+    'https://fonts.gstatic.com/s/tangerine/v15/IurY6Y5j_oScZZow4VOxCZZM.woff2'
 ];
 
 // install service worker
