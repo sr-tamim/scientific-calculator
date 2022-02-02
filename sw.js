@@ -1,12 +1,12 @@
 // service worker file
-const staticCacheName = 'calculator-v1.1.2';
+const staticCacheName = 'calculator-v1.1.3';
 const assets = [
-    '/scientific-calculator/',
-    '/scientific-calculator/index.html',
-    '/scientific-calculator/style/style.css',
-    '/scientific-calculator/script/script.js',
-    '/scientific-calculator/script/app.js',
-    '/scientific-calculator/img/favicon.ico',
+    'https://tamim9.github.io/scientific-calculator/',
+    'https://tamim9.github.io/scientific-calculator/index.html',
+    'https://tamim9.github.io/scientific-calculator/style/style.css',
+    'https://tamim9.github.io/scientific-calculator/script/script.js',
+    'https://tamim9.github.io/scientific-calculator/script/app.js',
+    'https://tamim9.github.io/scientific-calculator/img/favicon.ico',
     'https://fonts.googleapis.com/css2?family=PT+Sans&family=Charm&family=Tangerine&display=swap',
     'https://fonts.gstatic.com/s/ptsans/v16/jizaRExUiTo99u79D0KExQ.woff2',
     'https://fonts.gstatic.com/s/tangerine/v15/IurY6Y5j_oScZZow4VOxCZZM.woff2',
