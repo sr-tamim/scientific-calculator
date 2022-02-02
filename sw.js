@@ -1,5 +1,5 @@
 // service worker file
-const staticCacheName = 'calculator-v2.1.0';
+const staticCacheName = 'calculator-v2.5.0';
 const assets = [
     '/scientific-calculator/',
     '/scientific-calculator/index.html',
@@ -8,6 +8,8 @@ const assets = [
     '/scientific-calculator/script/app.js',
     '/scientific-calculator/img/favicon.ico',
     // fonts links
+    '/scientific-calculator/style/fonts/charm.woff2',
+    '/scientific-calculator/style/fonts/pt-sans.woff2',
     '/scientific-calculator/style/fonts/tangerine.woff2',
 ];
 
