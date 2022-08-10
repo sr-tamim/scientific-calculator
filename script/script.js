@@ -252,8 +252,13 @@ function equalFunc() {
 
     let answer;
     try {
-        console.log(calculation)
-        answer = calculate(calculation);
+        answer = calculate(calculation).toString();
+
+        if (!answer.includes('e') &&
+            answer.includes('.') &&
+            answer.split('.')[1].includes('000000')) {
+            answer = parseFloat(answer.slice(0, -1)).toString()
+        }
     } catch (error) {
         if (error instanceof SyntaxError) {
             screen.value = 'Syntax Error!';
@@ -261,16 +266,16 @@ function equalFunc() {
         }
     }
 
-    calculation = [answer.toString()];
-    showOnScreen = [answer.toString()];
+    calculation = [answer];
+    showOnScreen = [answer];
 
     localStorage.setItem('ans', answer);
 
-    if (answer.toString().indexOf('e') != -1) {
-        answer = answer.toString().split('e');
-        exponentialNum.innerText = answer[1];
+    if (answer.indexOf('e') != -1) {
+        const newAnswer = answer.split('e');
+        exponentialNum.innerText = newAnswer[1];
         exponentialNum.parentElement.classList.add('active');
-        answer = answer[0];
+        answer = newAnswer[0];
     }
     screen.value = answer;
 
