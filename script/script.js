@@ -254,9 +254,10 @@ function equalFunc() {
     try {
         answer = calculate(calculation).toString();
 
+        // javascript floating calculation issue fix
         if (!answer.includes('e') &&
             answer.includes('.') &&
-            answer.split('.')[1].includes('000000')) {
+            answer.slice(0, -1).split('.')[1].endsWith('000000')) {
             answer = parseFloat(answer.slice(0, -1)).toString()
         }
     } catch (error) {
