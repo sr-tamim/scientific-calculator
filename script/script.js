@@ -313,23 +313,13 @@ answerButton.addEventListener('click', () => {
 
 // add keyboard functionality for computers
 document.addEventListener('keydown', e => {
-    switch (e.key) {
-        case 'Enter':
-            e.preventDefault();
-            equalBut.click();
-            break;
-        case 'Backspace':
-            e.preventDefault();
-            topScreen.innerText ? delBut.click() : acBut.click();
-            break;
-        default:
-            numBut.forEach(element => {
-                if (element.innerText === e.key) { e.preventDefault(); element.click(); }
-            })
-            operationBut.forEach(element => {
-                if (element.dataset.buttonSymbol === e.key) { e.preventDefault(); element.click(); }
-            })
-    }
+    let targetElement = e.key === 'Enter' ? equalBut :
+        e.key === 'Backspace' ? acBut :
+            e.key === 'Delete' ? delBut :
+                !isNaN(e.key) ? [...numBut].find(element => element.innerText === e.key)
+                    : [...operationBut].find(element => element.dataset.buttonSymbol === e.key);
+    targetElement && e.preventDefault();
+    targetElement && targetElement.click()
 })
 
 // button click animation
