@@ -325,14 +325,16 @@ document.addEventListener('keydown', e => {
 // button click animation
 document.querySelectorAll('.button').forEach(button => {
     button.addEventListener('click', () => {
-        button.style.backgroundColor = "#3d3d3d"
-        button.style.transform = "scale(0.9)"
-        setTimeout(() => {
-            button.style.transform = "scale(1.05)"
-        }, 90)
-        setTimeout(() => {
-            button.style.backgroundColor = "#2a2a2a"
-            button.style.transform = "scale(1)"
-        }, 150)
+        button.classList.add('click-animation')
+        button.addEventListener('animationend', () => button.classList.remove('click-animation'), { once: true })
+        // button.style.backgroundColor = "#3d3d3d"
+        // button.style.transform = "scale(0.9)"
+        // setTimeout(() => {
+        //     button.style.transform = "scale(1.05)"
+        // }, 90)
+        // setTimeout(() => {
+        //     button.style.backgroundColor = "#2a2a2a"
+        //     button.style.transform = "scale(1)"
+        // }, 150)
     })
 })
