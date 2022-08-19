@@ -71,7 +71,8 @@ trigonoToggle.addEventListener('click', () => {
 })
 
 function trigo(operator, angle) {
-    if (trigonoMode == 'deg') {
+    // convert degree angle to radian angle (not for inverse trigonometry)
+    if (trigonoMode == 'deg' && operator.name[0] !== 'a') {
         angle = angle * Math.PI / 180;
     }
     let result;
@@ -88,6 +89,11 @@ function trigo(operator, angle) {
         return result;
     }
     result = operator(angle);
+
+    // convert result for degree angle (only for inverse trigonometry)
+    if (trigonoMode == 'deg' && operator.name[0] === 'a') {
+        result = result * 180 / Math.PI
+    }
     return result;
 }
 
