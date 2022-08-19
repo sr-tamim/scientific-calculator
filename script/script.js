@@ -79,6 +79,10 @@ function trigo(operator, angle) {
         result = 0;
         return result;
     }
+    else if (operator.name == 'cos' && (angle == (Math.PI / 2) || angle == (3 * Math.PI / 2))) {
+        result = 0;
+        return result;
+    }
     else if (operator.name == 'tan' && angle == (Math.PI / 2)) {
         result = 'Invalid Input';
         return result;
@@ -292,6 +296,7 @@ function removeAns(event) {
     calculation = [];
     showOnScreen = [];
     updateScreen();
+    console.log('remove ans')
     numBut.forEach(element => {
         element.removeEventListener('click', removeAns);
     })
